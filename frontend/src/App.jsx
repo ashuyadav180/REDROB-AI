@@ -43,26 +43,26 @@ export default function App() {
   }, []);
 
   const renderManagerView = () => (
-    <div className="flex flex-col h-full bg-[#0F172A] text-slate-200 font-sans">
-      <header className="flex justify-between items-center px-6 py-4 bg-[#0F172A] border-b border-slate-700">
+    <div className="flex flex-col h-full bg-transparent text-slate-200 font-sans relative">
+      <header className="flex justify-between items-center px-6 py-4 glass-panel border-b border-slate-700/50 z-20">
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-[#6366F1]/20 rounded-lg">
-            <Mic className="text-[#6366F1] w-6 h-6" />
+          <div className="p-2 bg-gradient-to-br from-[#6366F1] to-[#A855F7] rounded-xl shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+            <Mic className="text-white w-6 h-6" />
           </div>
-          <h1 className="text-xl font-bold text-white tracking-wide">VoiceOps AI</h1>
+          <h1 className="text-2xl font-bold font-heading text-gradient tracking-wide">VoiceOps AI</h1>
         </div>
         <nav className="flex space-x-6 text-sm font-medium text-slate-400">
-          <button className="text-[#6366F1] flex items-center space-x-2"><LayoutDashboard className="w-4 h-4"/><span>Dashboard</span></button>
-          <button className="hover:text-slate-200 flex items-center space-x-2"><Users className="w-4 h-4"/><span>Agents</span></button>
-          <button className="hover:text-slate-200 flex items-center space-x-2"><FileText className="w-4 h-4"/><span>Reports</span></button>
-          <button className="hover:text-slate-200 flex items-center space-x-2"><Settings className="w-4 h-4"/><span>Settings</span></button>
+          <button className="text-[#818CF8] flex items-center space-x-2 transition-colors"><LayoutDashboard className="w-4 h-4"/><span>Dashboard</span></button>
+          <button className="hover:text-[#818CF8] flex items-center space-x-2 transition-colors"><Users className="w-4 h-4"/><span>Agents</span></button>
+          <button className="hover:text-[#818CF8] flex items-center space-x-2 transition-colors"><FileText className="w-4 h-4"/><span>Reports</span></button>
+          <button className="hover:text-[#818CF8] flex items-center space-x-2 transition-colors"><Settings className="w-4 h-4"/><span>Settings</span></button>
         </nav>
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2 px-3 py-1.5 bg-[#10B981]/10 text-[#10B981] rounded-full text-xs font-semibold border border-[#10B981]/20">
+          <div className="flex items-center space-x-2 px-3 py-1.5 bg-[#10B981]/10 text-[#10B981] rounded-full text-xs font-semibold border border-[#10B981]/30 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
             <Activity className="w-3 h-3 animate-pulse" />
             <span>12 tasks processed today</span>
           </div>
-          <div className="w-8 h-8 rounded-full bg-[#6366F1] text-white flex items-center justify-center font-bold text-sm">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#6366F1] to-[#A855F7] text-white flex items-center justify-center font-bold text-sm shadow-[0_0_10px_rgba(99,102,241,0.4)] border border-white/20">
             M
           </div>
         </div>
@@ -71,24 +71,24 @@ export default function App() {
       <div className="flex flex-1 overflow-hidden relative">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50 z-0"></div>
         
-        <aside className="w-64 bg-[#1E293B] border-r border-slate-700 p-4 z-10 flex flex-col">
-          <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Active Field Agents</h2>
+        <aside className="w-64 glass-panel border-r border-slate-700/50 p-4 z-10 flex flex-col">
+          <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 font-heading">Active Field Agents</h2>
           <div className="space-y-3">
             {workers.map(worker => (
-              <div key={worker.id} className="flex items-center p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 cursor-pointer transition-colors">
+              <div key={worker.id} className="flex items-center p-3 rounded-xl glass-card cursor-pointer group">
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-lg shadow-inner">
+                  <div className="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center text-lg shadow-inner border border-slate-600/50 group-hover:border-[#6366F1]/50 transition-colors">
                     {worker.name.charAt(0)}
                   </div>
-                  <div className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-[#1E293B] ${
-                    worker.status === 'active' ? 'bg-[#10B981]' : 
-                    worker.status === 'idle' ? 'bg-[#F59E0B]' : 'bg-slate-500'
+                  <div className={`absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-2 border-[#1E293B] ${
+                    worker.status === 'active' ? 'bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.6)]' : 
+                    worker.status === 'idle' ? 'bg-[#F59E0B] shadow-[0_0_8px_rgba(245,158,11,0.6)]' : 'bg-slate-500'
                   }`}></div>
                 </div>
                 <div className="ml-3 flex-1">
                   <div className="flex justify-between items-center">
-                    <span className="font-semibold text-slate-200 text-sm">{worker.name}</span>
-                    <span className="text-xs">{worker.lang}</span>
+                    <span className="font-semibold text-slate-200 text-sm group-hover:text-white transition-colors">{worker.name}</span>
+                    <span className="text-xs text-slate-400">{worker.lang}</span>
                   </div>
                   <div className="text-xs text-slate-500 mt-0.5 flex items-center space-x-1">
                     <Clock className="w-3 h-3" />
@@ -102,40 +102,44 @@ export default function App() {
 
         <main className="flex-1 flex p-6 space-x-6 z-10 overflow-y-auto">
           <section className="flex flex-col w-[40%] space-y-4">
-            <h2 className="text-lg font-semibold text-white flex items-center space-x-2">
-              <Activity className="w-5 h-5 text-[#6366F1]" />
+            <h2 className="text-lg font-semibold text-white flex items-center space-x-2 font-heading">
+              <div className="p-1.5 rounded-md bg-[#6366F1]/20 border border-[#6366F1]/30">
+                <Activity className="w-4 h-4 text-[#818CF8]" />
+              </div>
               <span>Live Task Feed</span>
             </h2>
             <div className="space-y-3">
-              {tasks.map(task => (
-                <div key={task.id} className={`p-4 rounded-xl border ${
-                  task.status === 'Processing' ? 'bg-[#6366F1]/10 border-[#6366F1]/30 shadow-[0_0_15px_rgba(99,102,241,0.15)]' : 
-                  'bg-[#1E293B] border-slate-700'
+              {tasks.map((task, index) => (
+                <div key={task.id} style={{animationDelay: `${index * 100}ms`}} className={`p-4 rounded-xl border transition-all duration-300 animate-slide-in-right ${
+                  task.status === 'Processing' ? 'glass-card border-[#6366F1]/50 shadow-[0_0_20px_rgba(99,102,241,0.2)] transform scale-[1.02]' : 
+                  'glass-card border-slate-700/50 opacity-90'
                 }`}>
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-300">
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-xs font-bold text-slate-300 border border-slate-600/50">
                         {task.worker.charAt(0)}
                       </div>
-                      <span className="font-medium text-sm text-slate-200">{task.worker}</span>
-                      <span className="text-xs text-slate-500">• {task.time}</span>
+                      <div className="flex flex-col">
+                        <span className="font-semibold text-sm text-slate-200 leading-none">{task.worker}</span>
+                        <span className="text-[10px] text-slate-400 mt-1">{task.time}</span>
+                      </div>
                     </div>
-                    <div className={`px-2 py-1 rounded text-[10px] font-bold tracking-wider uppercase border ${
-                      task.intent === 'COMPLAINT' ? 'bg-[#EF4444]/10 text-[#EF4444] border-[#EF4444]/20' :
-                      task.intent === 'DELIVERY' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
-                      'bg-[#10B981]/10 text-[#10B981] border-[#10B981]/20'
+                    <div className={`px-2 py-1 rounded-md text-[10px] font-bold tracking-wider uppercase border shadow-sm ${
+                      task.intent === 'COMPLAINT' ? 'bg-[#EF4444]/10 text-[#F87171] border-[#EF4444]/30' :
+                      task.intent === 'DELIVERY' ? 'bg-blue-500/10 text-blue-400 border-blue-500/30' :
+                      'bg-[#10B981]/10 text-[#34D399] border-[#10B981]/30'
                     }`}>
                       {task.intent}
                     </div>
                   </div>
-                  <p className="text-slate-300 text-sm font-medium mb-3 leading-relaxed">"{task.transcript}"</p>
+                  <p className="text-slate-300 text-sm font-medium mb-4 leading-relaxed bg-slate-900/40 p-3 rounded-lg border border-slate-700/30">"{task.transcript}"</p>
                   <div className="flex items-center space-x-2">
-                    <div className={`flex items-center space-x-1.5 px-2 py-1 rounded-md text-xs font-medium ${
-                      task.status === 'Processing' ? 'bg-[#6366F1]/20 text-[#6366F1] border border-[#6366F1]/30' :
-                      task.status === 'Routed' ? 'bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20' :
-                      'bg-slate-800 text-slate-400 border border-slate-700'
+                    <div className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm ${
+                      task.status === 'Processing' ? 'bg-[#6366F1]/20 text-[#818CF8] border border-[#6366F1]/40' :
+                      task.status === 'Routed' ? 'bg-[#F59E0B]/10 text-[#FBBF24] border border-[#F59E0B]/30' :
+                      'bg-slate-800/60 text-slate-400 border border-slate-700/50'
                     }`}>
-                      {task.status === 'Processing' && <div className="w-1.5 h-1.5 rounded-full bg-[#6366F1] animate-ping mr-1"></div>}
+                      {task.status === 'Processing' && <div className="w-1.5 h-1.5 rounded-full bg-[#818CF8] animate-ping mr-1"></div>}
                       {task.status === 'Completed' && <CheckCircle className="w-3 h-3 mr-1" />}
                       <span>{task.status}</span>
                     </div>
@@ -146,27 +150,32 @@ export default function App() {
           </section>
 
           <section className="flex flex-col w-[35%] space-y-4">
-            <h2 className="text-lg font-semibold text-white flex items-center space-x-2">
-              <Server className="w-5 h-5 text-[#6366F1]" />
+            <h2 className="text-lg font-semibold text-white flex items-center space-x-2 font-heading">
+              <div className="p-1.5 rounded-md bg-[#8B5CF6]/20 border border-[#8B5CF6]/30">
+                <Server className="w-4 h-4 text-[#A855F7]" />
+              </div>
               <span>Pipeline: Task #{tasks[0].id}</span>
             </h2>
-            <div className="flex-1 bg-[#1E293B] border border-slate-700 rounded-xl p-6 flex flex-col items-center justify-center relative">
-              <div className="flex flex-col items-center space-y-6 w-full">
+            <div className="flex-1 glass-card border border-slate-700/50 rounded-2xl p-6 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#6366F1]/10 rounded-full blur-[80px] -z-10"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#A855F7]/10 rounded-full blur-[80px] -z-10"></div>
+              
+              <div className="flex flex-col items-center space-y-6 w-full relative z-10">
                 {['STT Agent', 'Intent Agent', 'Task Router', 'Action Agent', 'TTS Response'].map((node, i) => (
                   <React.Fragment key={node}>
-                    <div className={`w-full max-w-[240px] p-3 rounded-lg border flex items-center justify-between transition-all duration-300 ${
-                      activeNode === i ? 'bg-[#6366F1] border-[#6366F1] shadow-[0_0_20px_rgba(99,102,241,0.4)] text-white scale-105' :
-                      activeNode > i ? 'bg-slate-800 border-[#10B981]/30 text-slate-300' :
-                      'bg-slate-800/50 border-slate-700 text-slate-500'
+                    <div className={`w-full max-w-[240px] p-3.5 rounded-xl border flex items-center justify-between transition-all duration-500 ${
+                      activeNode === i ? 'bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] border-[#8B5CF6] shadow-[0_0_25px_rgba(139,92,246,0.5)] text-white scale-[1.05]' :
+                      activeNode > i ? 'glass-panel border-[#10B981]/40 text-slate-200' :
+                      'glass-panel opacity-60 border-slate-700/50 text-slate-400'
                     }`}>
-                      <span className="text-sm font-semibold">{node}</span>
-                      {activeNode > i && <CheckCircle className="w-4 h-4 text-[#10B981]" />}
-                      {activeNode === i && <Activity className="w-4 h-4 text-white/70 animate-spin" />}
+                      <span className="text-sm font-semibold tracking-wide">{node}</span>
+                      {activeNode > i && <CheckCircle className="w-4 h-4 text-[#34D399]" />}
+                      {activeNode === i && <Activity className="w-4 h-4 text-white/90 animate-spin" />}
                     </div>
                     {i < 4 && (
-                      <div className="h-6 w-0.5 bg-slate-700 relative">
-                        <div className={`absolute top-0 left-0 w-full bg-[#6366F1] transition-all duration-500 ${
-                          activeNode > i ? 'h-full' : activeNode === i ? 'h-1/2 animate-pulse' : 'h-0'
+                      <div className="h-6 w-0.5 bg-slate-700/50 relative">
+                        <div className={`absolute top-0 left-0 w-full bg-gradient-to-b from-[#6366F1] to-[#8B5CF6] transition-all duration-700 ${
+                          activeNode > i ? 'h-full shadow-[0_0_10px_rgba(139,92,246,0.6)]' : activeNode === i ? 'h-1/2 animate-pulse shadow-[0_0_10px_rgba(139,92,246,0.4)]' : 'h-0'
                         }`}></div>
                       </div>
                     )}
@@ -177,66 +186,68 @@ export default function App() {
           </section>
 
           <section className="flex flex-col w-[25%] space-y-4">
-            <h2 className="text-lg font-semibold text-white flex items-center space-x-2">
-              <BarChart2 className="w-5 h-5 text-[#6366F1]" />
+            <h2 className="text-lg font-semibold text-white flex items-center space-x-2 font-heading">
+              <div className="p-1.5 rounded-md bg-[#10B981]/20 border border-[#10B981]/30">
+                <BarChart2 className="w-4 h-4 text-[#34D399]" />
+              </div>
               <span>Metrics</span>
             </h2>
             
             <div className="grid grid-cols-2 gap-3 mb-2">
-              <div className="bg-[#1E293B] border border-slate-700 rounded-xl p-4">
+              <div className="glass-card rounded-xl p-4 animate-fade-in-up" style={{animationDelay: '100ms'}}>
                 <div className="text-slate-400 text-xs font-medium mb-1">Tasks Today</div>
-                <div className="text-2xl font-bold text-white">1,284</div>
-                <div className="text-[#10B981] text-xs mt-1">↑ 12% vs yday</div>
+                <div className="text-2xl font-bold text-white font-heading">1,284</div>
+                <div className="text-[#34D399] text-xs mt-1 font-medium flex items-center"><Activity className="w-3 h-3 mr-1"/> ↑ 12% vs yday</div>
               </div>
-              <div className="bg-[#1E293B] border border-slate-700 rounded-xl p-4">
+              <div className="glass-card rounded-xl p-4 animate-fade-in-up" style={{animationDelay: '200ms'}}>
                 <div className="text-slate-400 text-xs font-medium mb-1">Avg Res Time</div>
-                <div className="text-2xl font-bold text-white">4.2s</div>
-                <div className="text-[#10B981] text-xs mt-1">↓ 0.3s vs yday</div>
+                <div className="text-2xl font-bold text-white font-heading">4.2s</div>
+                <div className="text-[#34D399] text-xs mt-1 font-medium flex items-center"><Activity className="w-3 h-3 mr-1"/> ↓ 0.3s vs yday</div>
               </div>
             </div>
 
-            <div className="bg-[#1E293B] border border-slate-700 rounded-xl p-4 mb-2">
-              <div className="text-slate-400 text-xs font-medium mb-2">Language Distribution</div>
+            <div className="glass-card rounded-xl p-5 mb-2 animate-fade-in-up" style={{animationDelay: '300ms'}}>
+              <div className="text-slate-400 text-xs font-medium mb-3">Language Distribution</div>
               <div className="flex items-center space-x-2 text-sm text-slate-300">
-                <span className="w-full bg-slate-800 h-2 rounded-full overflow-hidden flex">
-                  <span className="bg-[#6366F1] w-[45%] h-full"></span>
-                  <span className="bg-blue-500 w-[30%] h-full"></span>
-                  <span className="bg-[#10B981] w-[25%] h-full"></span>
+                <span className="w-full bg-slate-800/80 h-2.5 rounded-full overflow-hidden flex shadow-inner">
+                  <span className="bg-gradient-to-r from-[#6366F1] to-[#818CF8] w-[45%] h-full"></span>
+                  <span className="bg-gradient-to-r from-blue-500 to-cyan-400 w-[30%] h-full"></span>
+                  <span className="bg-gradient-to-r from-[#10B981] to-[#34D399] w-[25%] h-full"></span>
                 </span>
               </div>
-              <div className="flex justify-between text-[10px] text-slate-400 mt-2">
-                <span>Hindi (45%)</span>
-                <span>Tamil (30%)</span>
-                <span>Marathi (25%)</span>
+              <div className="flex justify-between text-[10px] font-medium text-slate-400 mt-3">
+                <span className="flex items-center"><span className="w-2 h-2 rounded-full bg-[#818CF8] mr-1"></span>Hindi (45%)</span>
+                <span className="flex items-center"><span className="w-2 h-2 rounded-full bg-cyan-400 mr-1"></span>Tamil (30%)</span>
+                <span className="flex items-center"><span className="w-2 h-2 rounded-full bg-[#34D399] mr-1"></span>Marathi (25%)</span>
               </div>
             </div>
 
-            <h2 className="text-sm font-semibold text-white flex items-center space-x-2 mt-4 pt-2">
-              <AlertTriangle className="w-4 h-4 text-[#EF4444]" />
+            <h2 className="text-sm font-semibold text-white flex items-center space-x-2 mt-4 pt-2 font-heading">
+              <div className="p-1 rounded-md bg-[#EF4444]/20">
+                <AlertTriangle className="w-4 h-4 text-[#F87171]" />
+              </div>
               <span>Action Required</span>
             </h2>
             
             <div className="space-y-3">
-              <div className="bg-[#EF4444]/10 border border-[#EF4444]/20 rounded-xl p-4 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-[#EF4444]"></div>
-                <div className="flex justify-between items-start mb-1">
-                  <span className="text-xs font-bold text-[#EF4444]">ESCALATION</span>
-                  <span className="text-xs text-slate-500">2m ago</span>
+              <div className="glass-panel border-l-4 border-l-[#EF4444] rounded-xl p-4 relative overflow-hidden group hover:bg-[#EF4444]/5 transition-colors">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="text-xs font-bold text-[#F87171]">ESCALATION</span>
+                  <span className="text-xs text-slate-400">2m ago</span>
                 </div>
-                <p className="text-slate-300 text-sm mb-3">Mohan reported severe vehicle breakdown on Route 4. Needs immediate assistance.</p>
-                <button className="w-full py-1.5 bg-[#EF4444]/20 hover:bg-[#EF4444]/30 text-[#EF4444] text-xs font-semibold rounded transition-colors border border-[#EF4444]/30">
+                <p className="text-slate-300 text-sm mb-3 leading-relaxed">Mohan reported severe vehicle breakdown on Route 4. Needs immediate assistance.</p>
+                <button className="w-full py-2 bg-[#EF4444]/10 hover:bg-[#EF4444]/20 text-[#F87171] text-xs font-semibold rounded-lg transition-colors border border-[#EF4444]/30 shadow-sm">
                   Review Issue
                 </button>
               </div>
               
-              <div className="bg-[#F59E0B]/10 border border-[#F59E0B]/20 rounded-xl p-4 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-[#F59E0B]"></div>
-                <div className="flex justify-between items-start mb-1">
-                  <span className="text-xs font-bold text-[#F59E0B]">UNRECOGNIZED INTENT</span>
-                  <span className="text-xs text-slate-500">14m ago</span>
+              <div className="glass-panel border-l-4 border-l-[#F59E0B] rounded-xl p-4 relative overflow-hidden group hover:bg-[#F59E0B]/5 transition-colors">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="text-xs font-bold text-[#FBBF24]">UNRECOGNIZED INTENT</span>
+                  <span className="text-xs text-slate-400">14m ago</span>
                 </div>
-                <p className="text-slate-300 text-sm mb-3">Priya sent audio that could not be confidently mapped to a task schema.</p>
-                <button className="w-full py-1.5 bg-[#F59E0B]/20 hover:bg-[#F59E0B]/30 text-[#F59E0B] text-xs font-semibold rounded transition-colors border border-[#F59E0B]/30">
+                <p className="text-slate-300 text-sm mb-3 leading-relaxed">Priya sent audio that could not be confidently mapped to a task schema.</p>
+                <button className="w-full py-2 bg-[#F59E0B]/10 hover:bg-[#F59E0B]/20 text-[#FBBF24] text-xs font-semibold rounded-lg transition-colors border border-[#F59E0B]/30 shadow-sm">
                   Manual Label
                 </button>
               </div>
@@ -248,8 +259,9 @@ export default function App() {
   );
 
   const renderWorkerView = () => (
-    <div className="flex flex-col h-full bg-slate-900 items-center justify-center py-8 overflow-y-auto">
-      <div className="w-[375px] h-[812px] min-h-[812px] bg-[#EFEAE2] rounded-[40px] shadow-2xl border-[8px] border-slate-800 overflow-hidden flex flex-col relative font-sans shrink-0">
+    <div className="flex flex-col h-full bg-gradient-to-br from-[#0B1121] via-[#0F172A] to-[#1E1B4B] items-center justify-center py-8 overflow-y-auto relative">
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#10B981]/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="w-[375px] h-[812px] min-h-[812px] bg-[#EFEAE2] rounded-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-[8px] border-slate-800 overflow-hidden flex flex-col relative font-sans shrink-0 z-10">
         <div className="bg-[#008069] text-white px-4 py-3 flex items-center shadow-md z-10">
           <div className="flex items-center flex-1">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-xl shadow-sm">
@@ -375,9 +387,9 @@ export default function App() {
   );
 
   const renderArchitectureView = () => (
-    <div className="flex flex-col h-full bg-[#0F172A] text-slate-200 font-sans p-8 overflow-y-auto">
-      <div className="max-w-5xl mx-auto w-full relative">
-        <h2 className="text-2xl font-bold text-white mb-12 text-center tracking-wide">VoiceOps AI System Architecture</h2>
+    <div className="flex flex-col h-full bg-gradient-to-br from-[#0B1121] via-[#0F172A] to-[#1E1B4B] text-slate-200 font-sans p-8 overflow-y-auto relative">
+      <div className="max-w-5xl mx-auto w-full relative z-10">
+        <h2 className="text-3xl font-bold text-white mb-12 text-center tracking-wide font-heading text-gradient">VoiceOps AI System Architecture</h2>
         
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwaGF0IGQ9Ik0wIDM5LjVoNDBWMHItMS41IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] pointer-events-none opacity-50"></div>
 
@@ -549,34 +561,36 @@ export default function App() {
   );
 
   return (
-    <div className="w-full h-screen bg-[#0F172A] flex flex-col overflow-hidden font-sans">
-      <div className="bg-[#1E293B] border-b border-slate-700 p-4 flex justify-center space-x-4 z-50 shadow-md">
+    <div className="w-full h-screen bg-gradient-to-br from-[#0B1121] via-[#0F172A] to-[#1E1B4B] flex flex-col overflow-hidden font-sans relative">
+      <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-50 pointer-events-none"></div>
+      
+      <div className="glass-panel border-b border-slate-700/50 p-4 flex justify-center space-x-4 z-50 shadow-lg">
         <button 
           onClick={() => setActiveTab('manager')}
-          className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${
+          className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
             activeTab === 'manager' 
-            ? 'bg-[#6366F1] text-white shadow-[0_0_15px_rgba(99,102,241,0.4)]' 
-            : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200 border border-slate-700'
+            ? 'bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] scale-105' 
+            : 'glass-button text-slate-400 hover:text-white hover:bg-slate-800/80'
           }`}
         >
           Manager Dashboard
         </button>
         <button 
           onClick={() => setActiveTab('worker')}
-          className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${
+          className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
             activeTab === 'worker' 
-            ? 'bg-[#10B981] text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' 
-            : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200 border border-slate-700'
+            ? 'bg-gradient-to-r from-[#10B981] to-[#059669] text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105' 
+            : 'glass-button text-slate-400 hover:text-white hover:bg-slate-800/80'
           }`}
         >
           Worker Interface
         </button>
         <button 
           onClick={() => setActiveTab('architecture')}
-          className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${
+          className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
             activeTab === 'architecture' 
-            ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
-            : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200 border border-slate-700'
+            ? 'bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-[0_0_20px_rgba(59,130,246,0.4)] scale-105' 
+            : 'glass-button text-slate-400 hover:text-white hover:bg-slate-800/80'
           }`}
         >
           System Architecture
